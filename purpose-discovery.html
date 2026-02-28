@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Your Purpose – Designing Your Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --love: #FF6B9D;
+    --good: #7C5CBF;
+    --world: #00C9A7;
+    --paid: #FFB347;
+    --bg: #0D0D1A;
+    --surface: #16162A;
+    --card: #1E1E38;
+    --text: #F0F0FF;
+    --muted: #8888BB;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(124,92,191,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 80%, rgba(0,201,167,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,107,157,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  header { text-align: center; padding: 2rem 0 1rem; }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255,107,157,0.15);
+    border: 1px solid rgba(255,107,157,0.4);
+    color: var(--love);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 99px;
+    margin-bottom: 1.2rem;
+  }
+
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #FF6B9D, #7C5CBF, #00C9A7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.8rem;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .progress-bar-wrap {
+    margin: 2rem 0 1rem;
+    background: var(--surface);
+    border-radius: 99px;
+    height: 6px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--love), var(--good), var(--world));
+    transition: width 0.5s ease;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .phase-tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .phase-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    color: var(--muted);
+    transition: all 0.3s;
+    background: var(--surface);
+    cursor: default;
+    user-select: none;
+  }
+  .phase-tab.active { border-color: currentColor; color: #fff; }
+  .phase-tab.done { opacity: 0.75; cursor: pointer; }
+  .phase-tab.done:hover { opacity: 1; border-color: currentColor; }
+  .phase-tab .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .tab-love  { color: var(--love);  }
+  .tab-good  { color: var(--good);  }
+  .tab-world { color: var(--world); }
+  .tab-paid  { color: var(--paid);  }
+  .tab-reflect { color: #fff; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.4s ease;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .card-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .card-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
+  .card-subtitle { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; font-style: italic; }
+
+  .question-block { margin-bottom: 1.5rem; }
+  .question-label { font-size: 0.85rem; font-weight: 500; color: var(--muted); margin-bottom: 0.6rem; letter-spacing: 0.03em; }
+  .question-text { font-size: 1.05rem; font-weight: 400; line-height: 1.55; margin-bottom: 1rem; color: var(--text); }
+  .hint {
+    font-size: 0.82rem; color: var(--muted); font-style: italic;
+    margin-bottom: 0.8rem; padding: 0.6rem 0.9rem;
+    background: rgba(255,255,255,0.04); border-radius: 8px;
+    border-left: 3px solid rgba(255,255,255,0.15);
+  }
+
+  /* NAME INPUT */
+  .name-input-wrap { margin-top: 1.5rem; }
+  .name-input-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; display: block; }
+  .name-input {
+    width: 100%;
+    background: rgba(0,0,0,0.25);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.9rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .name-input:focus { border-color: rgba(255,107,157,0.5); }
+  .name-input::placeholder { color: var(--muted); font-weight: 400; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; }
+
+  /* TAGS */
+  .tags-container {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.7rem;
+    background: rgba(0,0,0,0.25); border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.08); min-height: 60px;
+    cursor: text; transition: border-color 0.2s;
+  }
+  .tags-container:focus-within { border-color: rgba(255,255,255,0.25); }
+  .tag {
+    display: flex; align-items: center; gap: 0.3rem;
+    padding: 0.3rem 0.7rem; border-radius: 99px;
+    font-size: 0.85rem; font-weight: 500; animation: popIn 0.2s ease;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  .tag-remove { cursor: pointer; opacity: 0.6; font-size: 0.9rem; line-height: 1; transition: opacity 0.15s; }
+  .tag-remove:hover { opacity: 1; }
+  .tag-input {
+    flex: 1; min-width: 120px; background: transparent; border: none;
+    outline: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  }
+  .tag-input::placeholder { color: var(--muted); }
+
+  /* SCALE */
+  .scale-wrap { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .scale-btn {
+    flex: 1; min-width: 40px; padding: 0.6rem 0.2rem;
+    border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.1);
+    background: transparent; color: var(--muted);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .scale-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--text); transform: translateY(-2px); }
+  .scale-btn.selected { color: #fff; transform: translateY(-2px); }
+
+  /* TEXTAREA */
+  textarea {
+    width: 100%; background: rgba(0,0,0,0.25); border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: 12px; color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; padding: 0.9rem; resize: vertical; min-height: 90px;
+    outline: none; transition: border-color 0.2s;
+  }
+  textarea:focus { border-color: rgba(255,255,255,0.25); }
+  textarea::placeholder { color: var(--muted); }
+
+  /* BUTTONS */
+  .btn-row { display: flex; gap: 0.8rem; justify-content: flex-end; margin-top: 1.5rem; flex-wrap: wrap; }
+  .btn {
+    padding: 0.7rem 1.6rem; border-radius: 12px; font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.9rem; cursor: pointer; border: none;
+    transition: all 0.2s; letter-spacing: 0.03em;
+  }
+  .btn-ghost { background: transparent; border: 1.5px solid rgba(255,255,255,0.15); color: var(--muted); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: var(--text); }
+  .btn-primary { background: linear-gradient(135deg, var(--love), #C84B8A); color: #fff; box-shadow: 0 4px 20px rgba(255,107,157,0.3); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,107,157,0.45); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-pdf {
+    background: linear-gradient(135deg, #00C9A7, #0097a7); color: #fff;
+    box-shadow: 0 4px 20px rgba(0,201,167,0.3);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.6rem; border-radius: 12px; font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.2s;
+  }
+  .btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,201,167,0.45); }
+
+  /* OVERLAP */
+  .overlap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  @media (max-width: 560px) { .overlap-grid { grid-template-columns: 1fr; } }
+  .overlap-card { padding: 1.1rem; border-radius: 14px; border: 1.5px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.2); }
+  .overlap-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .overlap-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.7rem; line-height: 1.4; }
+
+  /* CHIPS */
+  .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chip { padding: 0.25rem 0.65rem; border-radius: 99px; font-size: 0.8rem; font-weight: 400; }
+
+  /* PURPOSE BOX */
+  .purpose-box {
+    border-radius: 18px; padding: 2rem; text-align: center;
+    background: linear-gradient(135deg, rgba(255,107,157,0.12), rgba(124,92,191,0.12), rgba(0,201,167,0.12));
+    border: 1px solid rgba(255,255,255,0.12); margin-top: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .purpose-box::before {
+    content: '✦'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+    font-size: 3rem; opacity: 0.08;
+  }
+  .purpose-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .purpose-input {
+    width: 100%; background: rgba(0,0,0,0.3); border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 12px; color: var(--text); font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 600; padding: 0.9rem 1rem; text-align: center;
+    outline: none; transition: border-color 0.2s;
+  }
+  .purpose-input:focus { border-color: rgba(255,107,157,0.5); }
+  .purpose-input::placeholder { color: var(--muted); font-weight: 400; font-family: 'DM Sans', sans-serif; }
+
+  /* CELEBRATION */
+  .celebration { text-align: center; padding: 2rem 0; animation: slideUp 0.5s ease; }
+  .celebration .emoji { font-size: 3.5rem; margin-bottom: 1rem; display: block; animation: bounce 1s ease infinite alternate; }
+  @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+  .celebration h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .celebration p { color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+  .final-purpose {
+    margin: 2rem auto; max-width: 700px; padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(255,107,157,0.15), rgba(0,201,167,0.15));
+    border: 1.5px solid rgba(255,255,255,0.15); border-radius: 20px;
+  }
+  .final-purpose .fp-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+  .final-purpose .fp-statement { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; line-height: 1.5; color: #fff; }
+
+  .next-steps { text-align: left; margin-top: 2rem; padding: 1.5rem; background: var(--card); border-radius: 16px; border: 1px solid rgba(255,255,255,0.07); }
+  .next-steps h3 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 1rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.78rem; }
+  .next-step-item { display: flex; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; line-height: 1.4; }
+  .next-step-item:last-child { border-bottom: none; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,107,157,0.2); color: var(--love); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Syne', sans-serif; }
+
+  .bottom-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; padding-bottom: 1rem; }
+  .restart-btn { background: transparent; border: 1.5px solid rgba(255,255,255,0.15); color: var(--muted); padding: 0.7rem 1.8rem; border-radius: 12px; font-family: 'Syne', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+  .restart-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+  .edit-btn { background: transparent; border: 1.5px solid rgba(255,179,71,0.4); color: var(--paid); padding: 0.7rem 1.8rem; border-radius: 12px; font-family: 'Syne', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+  .edit-btn:hover { border-color: var(--paid); background: rgba(255,179,71,0.08); }
+
+  /* MULTI-CHOICE */
+  .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.6rem; }
+  @media (max-width: 480px) { .choice-grid { grid-template-columns: 1fr; } }
+  .choice-btn { padding: 0.7rem 1rem; background: rgba(0,0,0,0.2); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+  .choice-btn:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+  .choice-btn.selected { color: #fff; }
+  .choice-check { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; transition: all 0.2s; }
+  .input-meta { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; }
+
+  /* INTRO CARD */
+  .intro-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 2.5rem 2rem; text-align: center; animation: slideUp 0.4s ease; }
+  .intro-card h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 0.6rem; background: linear-gradient(135deg, #FF6B9D, #7C5CBF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .intro-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; max-width: 440px; margin: 0 auto 1.5rem; }
+  .intro-pillars { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .intro-pillar { padding: 0.45rem 0.9rem; border-radius: 99px; font-size: 0.78rem; font-weight: 600; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1); }
+
+  /* PRINT / PDF */
+  @media print {
+
+/* Hide the Save button and any 'Remove' buttons on the PDF */
+    button, 
+    .no-print,
+    .delete-btn { 
+        display: none !important; 
+    }
+
+    /* Ensure the background colors/circles actually show up in the PDF */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Optional: Add some padding so the content doesn't hit the page edge */
+    .container {
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+    }
+    body { background: #fff !important; color: #111 !important; }
+    body::before { display: none; }
+    header, .progress-bar-wrap, .progress-label, .phase-tabs, .bottom-actions { display: none !important; }
+    .container { padding: 0 1rem; max-width: 100%; }
+    .card, .final-purpose, .next-steps, .celebration {
+      background: #fff !important; border: 1px solid #ddd !important;
+      box-shadow: none; animation: none; page-break-inside: avoid;
+    }
+    .celebration .emoji { animation: none; }
+    .chip { border: 1px solid #ccc !important; color: #333 !important; background: #f5f5f5 !important; }
+    .final-purpose .fp-statement { color: #111 !important; }
+    .final-purpose .fp-label { color: #666 !important; }
+    .next-steps h3, .step-num { color: #666 !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="badge">✦ Designing Your Life</div>
+    <h1>Discover Your Purpose</h1>
+    <p>Your purpose isn't out there somewhere — it's already inside you. Let's uncover it together.</p>
+  </header>
+
+  <div class="progress-label">
+    <span id="progressText">Getting started...</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+  </div>
+
+  <div class="phase-tabs">
+    <div class="phase-tab tab-love"    id="tab-0" onclick="jumpToPhase(0)"><div class="dot"></div> What You Love</div>
+    <div class="phase-tab tab-good"    id="tab-1" onclick="jumpToPhase(1)"><div class="dot"></div> What You're Good At</div>
+    <div class="phase-tab tab-world"   id="tab-2" onclick="jumpToPhase(2)"><div class="dot"></div> What The World Needs</div>
+    <div class="phase-tab tab-paid"    id="tab-3" onclick="jumpToPhase(3)"><div class="dot"></div> What You Can Be Paid For</div>
+    <div class="phase-tab tab-reflect" id="tab-4" onclick="jumpToPhase(4)"><div class="dot"></div> Your Purpose</div>
+  </div>
+
+  <div id="gameArea"></div>
+
+</div>
+
+<script>
+// =================== STATE ===================
+const state = {
+  screen: 'welcome',   // welcome | phase | reflect | purpose-stmt | done
+  phase: 0,
+  step: 0,
+  studentName: '',
+  answers: { love: {}, good: {}, world: {}, paid: {}, reflection: {} }
+};
+
+// =================== PHASES CONFIG ===================
+const phases = [
+  {
+    id: 'love', color: '#FF6B9D', bg: 'rgba(255,107,157,0.12)', icon: 'heart',
+    title: 'What You Love',
+    subtitle: '"Do what you love" — but first, let\'s figure out what that actually is.',
+    steps: [
+      { key: 'activities', type: 'tags',     question: 'What activities make you lose track of time?', hint: '💡 Think about the last time you were so into something you forgot to eat. What were you doing?', placeholder: 'Type and press Enter — e.g. drawing, coding, cooking...', min: 3 },
+      { key: 'topics',     type: 'tags',     question: 'What topics can you talk about for hours without getting bored?', hint: '💡 Imagine you\'re at a party. What topic makes you completely light up?', placeholder: 'e.g. gaming, fashion, social media, science...', min: 2 },
+      { key: 'joyEnergy',  type: 'scale',    question: 'When you do your favourite activities, how energised do you feel?', labels: ['Drained', '', '', '', '', 'Buzzing with energy'], min: 1 },
+      { key: 'kidDream',   type: 'textarea', question: 'What did you love doing as a kid that you\'ve maybe drifted away from?', hint: '💡 Before anyone told you to "be realistic" — what brought you pure joy?', placeholder: 'Take your time to think and write freely...', min: 10 }
+    ]
+  },
+  {
+    id: 'good', color: '#7C5CBF', bg: 'rgba(124,92,191,0.12)', icon: 'bolt',
+    title: 'What You\'re Good At',
+    subtitle: 'Your skills & strengths — both natural and learned.',
+    steps: [
+      { key: 'skills',       type: 'tags',        question: 'What skills do people often compliment you on or ask for your help with?', hint: '💡 Think about friends, family, teachers — what do they say you\'re naturally good at?', placeholder: 'e.g. listening, explaining things, design, maths...', min: 3 },
+      { key: 'effort',       type: 'tags',        question: 'What comes easily to you that seems hard for others?', hint: '💡 Things that feel almost effortless to you — these are clues!', placeholder: 'e.g. organising, public speaking, coming up with ideas...', min: 2 },
+      { key: 'proudOf',      type: 'textarea',    question: 'Describe something you\'ve done that you\'re genuinely proud of (school, home, hobby — anything).', hint: '💡 What skills did you use? What made it feel good?', placeholder: 'Tell the story — be specific!', min: 20 },
+      { key: 'strengthType', type: 'multichoice', question: 'Which of these strengths feel most like YOU? (Choose all that apply)', options: ['🧠 Analytical & logical thinking','🎨 Creative & visual thinking','🤝 Understanding & helping people','📣 Leading & communicating','🔧 Building & making things','📊 Organising & planning','🌱 Caring & nurturing others','💡 Innovating & problem-solving'], min: 1 }
+    ]
+  },
+  {
+    id: 'world', color: '#00C9A7', bg: 'rgba(0,201,167,0.12)', icon: 'globe',
+    title: 'What The World Needs',
+    subtitle: 'Purpose comes alive when our gifts serve something bigger than ourselves.',
+    steps: [
+      { key: 'issues',    type: 'tags',     question: 'What problems in the world make you feel genuinely angry or upset?', hint: '💡 Outrage is often a clue to purpose. What injustice or gap do you wish didn\'t exist?', placeholder: 'e.g. mental health stigma, food waste, loneliness, inequality...', min: 2 },
+      { key: 'community', type: 'tags',     question: 'Who are the people you most want to help or serve?', hint: '💡 Kids? Elderly? Youth? Artists? Entrepreneurs? A specific community?', placeholder: 'e.g. students, elderly, children in need, working adults...', min: 1 },
+      { key: 'change',    type: 'textarea', question: 'If you could change ONE thing about Singapore or the world, what would it be and why?', hint: '💡 No answer is too big or too small. This is your vision.', placeholder: 'Dream big. Write it down.', min: 20 },
+      { key: 'impact',    type: 'scale',    question: 'How important is it to you that your future career makes a positive impact on others?', labels: ['Not really important', '', '', '', '', 'Extremely important'], min: 1 }
+    ]
+  },
+  {
+    id: 'paid', color: '#FFB347', bg: 'rgba(255,179,71,0.12)', icon: 'briefcase',
+    title: 'What You Can Be Paid For',
+    subtitle: 'Sustainability matters — your purpose needs to support your life too.',
+    steps: [
+      { key: 'careers',          type: 'tags',        question: 'What careers or jobs have you looked up out of genuine interest?', hint: '💡 Be honest! Even if it sounds unusual — UX designer, content creator, therapist — write it.', placeholder: 'e.g. game developer, nurse, entrepreneur, chef...', min: 2 },
+      { key: 'marketableSkills', type: 'tags',        question: 'What skills do you have (or are learning) that companies or clients would pay for?', hint: '💡 Think about your poly course, side projects, or things you could offer as a service.', placeholder: 'e.g. video editing, programming, social media management...', min: 2 },
+      { key: 'polyChoice',       type: 'textarea',    question: 'Why did you choose your current polytechnic course? What do you hope it leads to?', hint: '💡 Even if you\'re uncertain, write what attracted you to it.', placeholder: 'Be real — even if you\'re unsure, that\'s okay.', min: 10 },
+      { key: 'moneyMindset',     type: 'multichoice', question: 'Which of these statements about work and money resonates most with you?', options: ['💰 Money matters a lot — I want to earn well','⚖️ I want a balance of decent pay and meaningful work','🌟 Passion first — money will follow','🔄 Depends on my season of life'], min: 1 }
+    ]
+  }
+];
+
+const ICONS = {
+  heart:     '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FF6B9D"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+  bolt:      '<svg width="22" height="22" viewBox="0 0 24 24" fill="#7C5CBF"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  globe:     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  briefcase: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFB347" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>'
+};
+
+// =================== RENDER ROUTER ===================
+function render() {
+  updateProgress();
+  updateTabs();
+  if      (state.screen === 'welcome')      renderWelcome();
+  else if (state.screen === 'phase')        renderPhaseStep();
+  else if (state.screen === 'reflect')      renderReflection();
+  else if (state.screen === 'purpose-stmt') renderPurposeStmt();
+  else if (state.screen === 'done')         renderCelebration();
+}
+
+// =================== PROGRESS ===================
+function updateProgress() {
+  const totalSteps = phases.reduce((s, p) => s + p.steps.length, 0) + 5;
+  let done = 0;
+  if (state.screen === 'phase')        done = phases.slice(0, state.phase).reduce((s, p) => s + p.steps.length, 0) + state.step;
+  else if (state.screen === 'reflect') done = phases.reduce((s, p) => s + p.steps.length, 0) + 1;
+  else if (state.screen === 'purpose-stmt') done = phases.reduce((s, p) => s + p.steps.length, 0) + 3;
+  else if (state.screen === 'done')    done = totalSteps;
+
+  const pct = Math.round((done / totalSteps) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent  = pct + '%';
+
+  const labels = ["Let's begin!", 'Exploring interests...', 'Discovering strengths...', 'Connecting to the world...', 'Thinking about sustainability...', 'Finding your Purpose!', '🎉 Purpose discovered!'];
+  const idx = state.screen === 'done' ? 6 : state.screen === 'welcome' ? 0 : state.phase + 1;
+  document.getElementById('progressText').textContent = labels[Math.min(idx, 6)];
+}
+
+// =================== TABS ===================
+function updateTabs() {
+  const currentPhaseIdx = state.screen === 'phase' ? state.phase : (state.screen === 'welcome' ? -1 : (state.screen === 'reflect' || state.screen === 'purpose-stmt' || state.screen === 'done' ? 4 : state.phase));
+  const allDone = (state.screen === 'reflect' || state.screen === 'purpose-stmt' || state.screen === 'done');
+
+  for (let i = 0; i < 5; i++) {
+    const tab = document.getElementById('tab-' + i);
+    tab.classList.remove('active', 'done');
+    if (i === currentPhaseIdx) {
+      tab.classList.add('active');
+    } else if (allDone && i < 4) {
+      tab.classList.add('done');
+    } else if (state.screen === 'phase' && i < state.phase) {
+      tab.classList.add('done');
+    }
+  }
+}
+
+function jumpToPhase(idx) {
+  // Only allow jumping to completed phases
+  const canJump = (state.screen === 'phase' && idx < state.phase) ||
+                  (state.screen === 'reflect' || state.screen === 'purpose-stmt' || state.screen === 'done');
+  if (!canJump && !(state.screen === 'phase' && idx === state.phase)) return;
+  if (!canJump) return;
+  if (idx < 4) {
+    state.screen = 'phase';
+    state.phase  = idx;
+    state.step   = 0;
+  } else {
+    state.screen = 'reflect';
+  }
+  render();
+}
+
+// =================== WELCOME ===================
+function renderWelcome() {
+  const saved = state.studentName || '';
+  document.getElementById('gameArea').innerHTML = `
+    <div class="intro-card">
+      <h2>Welcome to Your Purpose Journey 🌸</h2>
+      <p>Using the <strong>Ikigai framework</strong>, we'll explore four parts of you — what you love, what you're good at, what the world needs, and what you can be paid for. Where they meet is your <strong>Purpose</strong>.</p>
+      <div class="intro-pillars">
+        <span class="intro-pillar" style="color:var(--love);border-color:rgba(255,107,157,0.3)">❤️ What You Love</span>
+        <span class="intro-pillar" style="color:var(--good);border-color:rgba(124,92,191,0.3)">⚡ What You're Good At</span>
+        <span class="intro-pillar" style="color:var(--world);border-color:rgba(0,201,167,0.3)">🌍 What The World Needs</span>
+        <span class="intro-pillar" style="color:var(--paid);border-color:rgba(255,179,71,0.3)">💼 What You Can Be Paid For</span>
+      </div>
+      <div class="name-input-wrap" style="text-align:left;max-width:380px;margin:0 auto 1.8rem">
+        <label class="name-input-label">First, what's your name?</label>
+        <input class="name-input" id="nameInput" type="text" placeholder="Enter your name here..." value="${escHtml(saved)}" autocomplete="off" />
+      </div>
+      <button class="btn btn-primary" style="padding:0.85rem 2.5rem;font-size:1rem" onclick="startJourney()">
+        Begin My Journey →
+      </button>
+    </div>`;
+  const ni = document.getElementById('nameInput');
+  ni.focus();
+  ni.addEventListener('keydown', e => { if (e.key === 'Enter') startJourney(); });
+}
+
+function startJourney() {
+  const name = document.getElementById('nameInput').value.trim();
+  if (!name) { showValidation('Please enter your name to begin!'); return; }
+  state.studentName = name;
+  state.screen = 'phase';
+  state.phase  = 0;
+  state.step   = 0;
+  render();
+}
+
+// =================== PHASE STEP ===================
+function renderPhaseStep() {
+  const phase = phases[state.phase];
+  const step  = phase.steps[state.step];
+  const key   = phase.id + '.' + step.key;
+  const saved = getAnswer(key);
+
+  let inputHtml = '';
+
+  if (step.type === 'tags') {
+    const tags = saved || [];
+    inputHtml = `
+      <div class="tags-container" id="tagsContainer" onclick="document.getElementById('tagInput').focus()">
+        ${tags.map(t => tagHtml(t, phase.color)).join('')}
+        <input class="tag-input" id="tagInput" placeholder="${escHtml(step.placeholder)}" />
+      </div>
+      <div class="input-meta">
+        <span>Press <strong>Enter</strong> or <strong>comma</strong> to add each item</span>
+        <span id="tagCount">${tags.length} added${step.min ? ' (min ' + step.min + ')' : ''}</span>
+      </div>`;
+
+  } else if (step.type === 'scale') {
+    const val = saved || null;
+    inputHtml = `
+      <div class="scale-wrap">
+        ${[1,2,3,4,5,6].map(n => `
+          <button class="scale-btn ${val===n?'selected':''}"
+            style="${val===n ? 'border-color:'+phase.color+';background:'+phase.color+'22;color:'+phase.color : ''}"
+            onclick="selectScale(${n},'${phase.color}','${key}')">
+            ${n}
+          </button>`).join('')}
+      </div>
+      <div class="input-meta" style="margin-top:0.6rem">
+        <span style="color:${phase.color}">${step.labels[0]}</span>
+        <span style="color:${phase.color}">${step.labels[step.labels.length-1]}</span>
+      </div>`;
+
+  } else if (step.type === 'textarea') {
+    inputHtml = `
+      <textarea id="textArea" placeholder="${escHtml(step.placeholder)}" oninput="saveTA('${key}')">${escHtml(saved||'')}</textarea>
+      <div class="input-meta">
+        <span>Write freely — there are no wrong answers</span>
+        <span id="charCount">${(saved||'').length} chars</span>
+      </div>`;
+
+  } else if (step.type === 'multichoice') {
+    const sel = saved || [];
+    window._choiceKey   = key;
+    window._choiceColor = phase.color;
+    inputHtml = `
+      <div class="choice-grid">
+        ${step.options.map((opt, i) => {
+          const on = sel.includes(i);
+          return `<button class="choice-btn ${on?'selected':''}"
+            style="${on ? 'border-color:'+phase.color+';background:'+phase.color+'18' : ''}"
+            data-idx="${i}" onclick="toggleChoice(${i})">
+            <div class="choice-check" style="${on ? 'background:'+phase.color+';border-color:'+phase.color : ''}">${on?'✓':''}</div>
+            ${escHtml(opt)}
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="input-meta" style="margin-top:0.6rem">
+        <span id="choiceCount">${sel.length} selected</span>
+      </div>`;
+  }
+
+  const isLastStep  = state.step  === phase.steps.length - 1;
+  const isLastPhase = state.phase === phases.length - 1;
+  const nextLabel   = isLastStep ? (isLastPhase ? 'Connect the Dots →' : 'Next Section →') : 'Continue →';
+
+  document.getElementById('gameArea').innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:${phase.bg}">${ICONS[phase.icon]}</div>
+        <div>
+          <div class="card-title" style="color:${phase.color}">${phase.title}</div>
+          <div class="card-subtitle">${phase.subtitle}</div>
+        </div>
+      </div>
+      <div class="question-block">
+        <div class="question-label">Question ${state.step + 1} of ${phase.steps.length}</div>
+        <div class="question-text">${step.question}</div>
+        ${step.hint ? `<div class="hint">${step.hint}</div>` : ''}
+        ${inputHtml}
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goBack()">← Back</button>
+        <button class="btn btn-primary" onclick="goNext('${key}','${step.type}',${step.min||0})">${nextLabel}</button>
+      </div>
+    </div>`;
+
+  if (step.type === 'tags') {
+    window._tags = [...(saved||[])];
+    const inp = document.getElementById('tagInput');
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        addTag(inp.value.trim(), phase.color, key);
+        inp.value = '';
+      } else if (e.key === 'Backspace' && inp.value === '' && window._tags.length > 0) {
+        window._tags.pop();
+        setAnswer(key, [...window._tags]);
+        rebuildTags(phase.color, key);
+      }
+    });
+  }
+  if (step.type === 'textarea') {
+    const ta = document.getElementById('textArea');
+    ta.addEventListener('input', () => { document.getElementById('charCount').textContent = ta.value.length + ' chars'; });
+  }
+}
+
+function tagHtml(text, color) {
+  return `<div class="tag" style="background:${color}22;border:1px solid ${color}55;color:${color}">${escHtml(text)}<span class="tag-remove">×</span></div>`;
+}
+
+function addTag(val, color, key) {
+  if (!val || window._tags.includes(val)) return;
+  window._tags.push(val);
+  setAnswer(key, [...window._tags]);
+  rebuildTags(color, key);
+}
+
+function rebuildTags(color, key) {
+  const container = document.getElementById('tagsContainer');
+  const inp = document.getElementById('tagInput');
+  container.innerHTML = window._tags.map(t => tagHtml(t, color)).join('');
+  container.appendChild(inp);
+  inp.focus();
+  const cEl = document.getElementById('tagCount');
+  if (cEl) cEl.textContent = window._tags.length + ' added';
+  container.querySelectorAll('.tag-remove').forEach((el, i) => {
+    el.onclick = e => {
+      e.stopPropagation();
+      window._tags.splice(i, 1);
+      setAnswer(key, [...window._tags]);
+      rebuildTags(color, key);
+    };
+  });
+}
+
+function selectScale(n, color, key) {
+  setAnswer(key, n);
+  document.querySelectorAll('.scale-btn').forEach((btn, i) => {
+    const num = i + 1;
+    if (num === n) { btn.classList.add('selected'); btn.style.borderColor = color; btn.style.background = color+'22'; btn.style.color = color; }
+    else           { btn.classList.remove('selected'); btn.style.borderColor = ''; btn.style.background = ''; btn.style.color = ''; }
+  });
+}
+
+function toggleChoice(i) {
+  const key   = window._choiceKey;
+  const color = window._choiceColor;
+  let sel = getAnswer(key) || [];
+  sel = sel.includes(i) ? sel.filter(x => x !== i) : [...sel, i];
+  setAnswer(key, sel);
+  document.querySelectorAll('.choice-btn').forEach(btn => {
+    const idx = parseInt(btn.getAttribute('data-idx'), 10);
+    const on  = sel.includes(idx);
+    btn.classList.toggle('selected', on);
+    btn.style.borderColor = on ? color : '';
+    btn.style.background  = on ? color + '18' : '';
+    const chk = btn.querySelector('.choice-check');
+    if (chk) { chk.style.background = on ? color : ''; chk.style.borderColor = on ? color : ''; chk.textContent = on ? '✓' : ''; }
+  });
+  const c = document.getElementById('choiceCount');
+  if (c) c.textContent = sel.length + ' selected';
+}
+
+function saveTA(key) {
+  setAnswer(key, document.getElementById('textArea').value);
+}
+
+function goNext(key, type, minReq) {
+  const val = getAnswer(key);
+  if (type === 'tags'        && (!val || val.length < minReq))       { showValidation(`Please add at least ${minReq} item${minReq>1?'s':''}.`); return; }
+  if (type === 'textarea'    && (!val || val.trim().length < minReq)) { showValidation('Please write a bit more to continue.'); return; }
+  if (type === 'scale'       && (val === null || val === undefined))  { showValidation('Please select a rating to continue.'); return; }
+  if (type === 'multichoice' && (!val || val.length < minReq))       { showValidation('Please select at least one option.'); return; }
+
+  const phase = phases[state.phase];
+  if (state.step < phase.steps.length - 1) {
+    state.step++;
+  } else if (state.phase < phases.length - 1) {
+    state.phase++;
+    state.step = 0;
+  } else {
+    state.screen = 'reflect';
+  }
+  render();
+}
+
+function goBack() {
+  if (state.screen === 'phase') {
+    if (state.step > 0)        { state.step--; }
+    else if (state.phase > 0)  { state.phase--; state.step = phases[state.phase].steps.length - 1; }
+    else                       { state.screen = 'welcome'; }
+  } else if (state.screen === 'reflect')      { state.screen = 'phase'; state.phase = phases.length - 1; state.step = phases[phases.length-1].steps.length - 1; }
+  else if (state.screen === 'purpose-stmt')   { state.screen = 'reflect'; }
+  else if (state.screen === 'done')           { state.screen = 'purpose-stmt'; }
+  render();
+}
+
+function showValidation(msg) {
+  document.querySelector('.validation-msg')?.remove();
+  const el = Object.assign(document.createElement('div'), { className: 'validation-msg', textContent: '⚠ ' + msg });
+  Object.assign(el.style, { color: '#FF6B9D', fontSize: '0.82rem', textAlign: 'right', marginTop: '0.5rem' });
+  const target = document.querySelector('.btn-row');
+  if (target) target.before(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+// =================== HELPERS FOR Q8 / Q12 / Q16 ===================
+
+// Q8 strength archetype labels (matching phase config order)
+const STRENGTH_LABELS = [
+  'Analytical & logical thinking',
+  'Creative & visual thinking',
+  'Understanding & helping people',
+  'Leading & communicating',
+  'Building & making things',
+  'Organising & planning',
+  'Caring & nurturing others',
+  'Innovating & problem-solving'
+];
+
+// Q16 money mindset labels (matching phase config order)
+const MONEY_LABELS = [
+  'Money matters a lot — I want to earn well',
+  'A balance of decent pay and meaningful work',
+  'Passion first — money will follow',
+  'Depends on my season of life'
+];
+
+// Returns the selected strength archetype names as an array
+function getStrengthNames() {
+  const indices = getAnswer('good.strengthType') || [];
+  return indices.map(i => STRENGTH_LABELS[i]).filter(Boolean);
+}
+
+// Returns the selected money mindset label (first selected)
+function getMoneyMindset() {
+  const indices = getAnswer('paid.moneyMindset') || [];
+  return indices.length ? MONEY_LABELS[indices[0]] : null;
+}
+
+// Returns the impact score (1-6) from Q12
+function getImpactScore() {
+  return getAnswer('world.impact') || null;
+}
+
+// Builds a personalised impact sentence for MISSION hint based on Q12 score
+function impactHint(score) {
+  if (!score) return '';
+  if (score >= 5) return 'You rated impact as very important to you — your mission should feel bold and world-facing.';
+  if (score >= 3) return 'You want your work to matter. Think about how your mission can balance meaning and practicality.';
+  return 'Even a small, focused mission counts — you don\'t need to save the world to make a difference.';
+}
+
+// Builds a personalised profession framing sentence for PROFESSION hint based on Q16
+function professionHint(mindset) {
+  if (!mindset) return '';
+  if (mindset.includes('Money matters')) return 'Your profession should reward you well — look for roles where strong skills command high value.';
+  if (mindset.includes('balance'))       return 'Aim for a profession that pays decently and still feels meaningful — that sweet spot exists.';
+  if (mindset.includes('Passion first')) return 'Lead with your passion — trust that mastery in something you love will create real value over time.';
+  return 'Your needs will change over time — your profession can evolve with you. Start somewhere that excites you.';
+}
+
+// =================== REFLECTION ===================
+function renderReflection() {
+  state.screen = 'reflect';
+  const name  = state.studentName;
+  const loveA = getAnswer('love.activities') || [];
+  const loveT = getAnswer('love.topics')     || [];
+  const goodS = getAnswer('good.skills')     || [];
+  const goodE = getAnswer('good.effort')     || [];
+  const wldI  = getAnswer('world.issues')    || [];
+  const wldC  = getAnswer('world.community') || [];
+  const paidC = getAnswer('paid.careers')    || [];
+
+  // Q8 — strength archetypes
+  const strengthNames = getStrengthNames();
+  // Q12 — impact score
+  const impactScore   = getImpactScore();
+  // Q16 — money mindset
+  const moneyMindset  = getMoneyMindset();
+
+  const pr   = getAnswer('reflection.passion')    || '';
+  const mi   = getAnswer('reflection.mission')    || '';
+  const vo   = getAnswer('reflection.vocation')   || '';
+  const prof = getAnswer('reflection.profession') || '';
+
+  // Build PASSION hint: love tags + strength archetypes (Q8)
+  const passionLovePart     = [...loveA.slice(0,2), ...loveT.slice(0,1)];
+  const passionStrengthPart = strengthNames.slice(0,2);
+  const passionHintParts    = [];
+  if (passionLovePart.length)     passionHintParts.push(`Your love for <em>${escHtml(passionLovePart.join(', '))}</em>`);
+  if (passionStrengthPart.length) passionHintParts.push(`your strength in <em>${escHtml(passionStrengthPart.join(' & '))}</em>`);
+  const passionHintText = passionHintParts.length ? '💡 ' + passionHintParts.join(' combined with ') + ' is your Passion.' : '';
+
+  // Build MISSION hint: world issues + impact score framing (Q12)
+  const missionIssuePart = [...wldI.slice(0,2), ...wldC.slice(0,1)];
+  const missionImpactMsg = impactHint(impactScore);
+  const missionHintText  = missionIssuePart.length
+    ? `💡 Your concerns about <em>${escHtml(missionIssuePart.join(', '))}</em> are the heart of your Mission. ${missionImpactMsg}`
+    : (missionImpactMsg ? '💡 ' + missionImpactMsg : '');
+
+  // Build VOCATION hint: skills + effortless + strength archetypes (Q8)
+  const vocationSkillPart    = [...goodS.slice(0,1), ...goodE.slice(0,1)];
+  const vocationStrengthPart = strengthNames.slice(0,1);
+  const vocationHintParts    = [];
+  if (vocationSkillPart.length)    vocationHintParts.push(`<em>${escHtml(vocationSkillPart.join(', '))}</em>`);
+  if (vocationStrengthPart.length) vocationHintParts.push(`your <em>${escHtml(vocationStrengthPart[0])}</em> strength`);
+  const vocationHintText = vocationHintParts.length
+    ? `💡 ${vocationHintParts.join(' and ')} applied to the world's needs is your Vocation.`
+    : '';
+
+  // Build PROFESSION hint: careers + money mindset framing (Q16)
+  const profCareerPart  = paidC.slice(0,2);
+  const profMoneyMsg    = professionHint(moneyMindset);
+  const profHintParts   = [];
+  if (profCareerPart.length) profHintParts.push(`Your interest in <em>${escHtml(profCareerPart.join(', '))}</em> points toward your Profession.`);
+  if (profMoneyMsg)           profHintParts.push(profMoneyMsg);
+  const profHintText = profHintParts.length ? '💡 ' + profHintParts.join(' ') : '';
+
+  document.getElementById('gameArea').innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(255,255,255,0.08);font-size:1.4rem">✨</div>
+        <div>
+          <div class="card-title" style="background:linear-gradient(135deg,#FF6B9D,#00C9A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+            Connecting the Dots${name ? ', ' + escHtml(name) : ''}
+          </div>
+          <div class="card-subtitle">Look at what you've shared. Now let's find where they overlap.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem">
+        <div><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--love);margin-bottom:0.4rem">❤️ You love</div>
+          <div class="chips">${[...loveA,...loveT].slice(0,4).map(t=>`<div class="chip" style="background:rgba(255,107,157,0.15);color:var(--love)">${escHtml(t)}</div>`).join('')}</div></div>
+        <div><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--good);margin-bottom:0.4rem">⚡ You're good at</div>
+          <div class="chips">${[...goodS,...goodE].slice(0,4).map(t=>`<div class="chip" style="background:rgba(124,92,191,0.15);color:var(--good)">${escHtml(t)}</div>`).join('')}
+          ${strengthNames.slice(0,2).map(s=>`<div class="chip" style="background:rgba(124,92,191,0.1);color:var(--good);border:1px solid rgba(124,92,191,0.3)">${escHtml(s)}</div>`).join('')}</div></div>
+        <div><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--world);margin-bottom:0.4rem">🌍 World needs</div>
+          <div class="chips">${[...wldI,...wldC].slice(0,4).map(t=>`<div class="chip" style="background:rgba(0,201,167,0.15);color:var(--world)">${escHtml(t)}</div>`).join('')}</div></div>
+        <div><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--paid);margin-bottom:0.4rem">💼 Can be paid for</div>
+          <div class="chips">${paidC.slice(0,4).map(t=>`<div class="chip" style="background:rgba(255,179,71,0.15);color:var(--paid)">${escHtml(t)}</div>`).join('')}
+          ${moneyMindset ? `<div class="chip" style="background:rgba(255,179,71,0.1);color:var(--paid);border:1px solid rgba(255,179,71,0.3)">${escHtml(moneyMindset)}</div>` : ''}</div></div>
+      </div>
+
+      <div style="height:1px;background:rgba(255,255,255,0.07);margin:1.5rem 0"></div>
+      <p style="text-align:center;font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem">Fill in the four overlapping zones — this is where your Purpose lives 🔮</p>
+
+      <div class="overlap-grid">
+        <div class="overlap-card" style="border-color:rgba(255,107,157,0.2)">
+          <div class="overlap-label" style="color:var(--love)">💜 PASSION</div>
+          <div class="overlap-desc">What you <strong>love</strong> + what you're <strong>good at</strong></div>
+          <textarea style="min-height:70px" placeholder="e.g. I'm passionate about using creativity to solve problems..." oninput="setAnswer('reflection.passion',this.value)">${escHtml(pr)}</textarea>
+          ${passionHintText ? `<div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;line-height:1.5">${passionHintText}</div>` : ''}
+        </div>
+        <div class="overlap-card" style="border-color:rgba(0,201,167,0.2)">
+          <div class="overlap-label" style="color:var(--world)">🌟 MISSION</div>
+          <div class="overlap-desc">What you <strong>love</strong> + what the <strong>world needs</strong></div>
+          <textarea style="min-height:70px" placeholder="e.g. My mission is to use storytelling to raise awareness about mental health..." oninput="setAnswer('reflection.mission',this.value)">${escHtml(mi)}</textarea>
+          ${missionHintText ? `<div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;line-height:1.5">${missionHintText}</div>` : ''}
+        </div>
+        <div class="overlap-card" style="border-color:rgba(124,92,191,0.2)">
+          <div class="overlap-label" style="color:var(--good)">🔧 VOCATION</div>
+          <div class="overlap-desc">What you're <strong>good at</strong> + what the <strong>world needs</strong></div>
+          <textarea style="min-height:70px" placeholder="e.g. I can use my tech skills to help elderly people navigate digital services..." oninput="setAnswer('reflection.vocation',this.value)">${escHtml(vo)}</textarea>
+          ${vocationHintText ? `<div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;line-height:1.5">${vocationHintText}</div>` : ''}
+        </div>
+        <div class="overlap-card" style="border-color:rgba(255,179,71,0.2)">
+          <div class="overlap-label" style="color:var(--paid)">💼 PROFESSION</div>
+          <div class="overlap-desc">What the <strong>world needs</strong> + what you can be <strong>paid for</strong></div>
+          <textarea style="min-height:70px" placeholder="e.g. A career in UX design that helps make apps more accessible to all..." oninput="setAnswer('reflection.profession',this.value)">${escHtml(prof)}</textarea>
+          ${profHintText ? `<div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;line-height:1.5">${profHintText}</div>` : ''}
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goBack()">← Back</button>
+        <button class="btn btn-primary" onclick="proceedToPurpose()">Craft My Purpose Statement →</button>
+      </div>
+    </div>`;
+}
+
+function proceedToPurpose() {
+  const pr = getAnswer('reflection.passion') || '';
+  const mi = getAnswer('reflection.mission') || '';
+  if (pr.trim().length < 5 && mi.trim().length < 5) {
+    showValidation('Please fill in at least one or two overlaps before continuing.');
+    return;
+  }
+  state.screen = 'purpose-stmt';
+  render();
+}
+
+// =================== PURPOSE STATEMENT ===================
+function renderPurposeStmt() {
+  const name   = state.studentName;
+  const love   = (getAnswer('love.activities') || []).slice(0,2).join(' and ');
+  const world  = (getAnswer('world.issues')    || []).slice(0,1)[0] || 'make a difference';
+  const skill  = (getAnswer('good.skills')     || []).slice(0,1)[0] || null;
+
+  // Q8 — use top strength archetype if no explicit skill tag, or to enrich
+  const strengthNames = getStrengthNames();
+  const strengthPhrase = strengthNames.length ? strengthNames[0].toLowerCase() : null;
+  const skillPhrase    = skill || strengthPhrase || 'my skills';
+
+  // Q16 — money mindset shapes the "through" clause
+  const moneyMindset = getMoneyMindset();
+  const career = (getAnswer('paid.careers') || []).slice(0,1)[0] || null;
+  let careerPhrase = career || 'my work';
+  if (!career && moneyMindset) {
+    if (moneyMindset.includes('balance'))   careerPhrase = 'a career that balances meaning and reward';
+    if (moneyMindset.includes('Passion'))   careerPhrase = 'work I am passionate about';
+    if (moneyMindset.includes('Money'))     careerPhrase = 'a high-impact profession';
+  }
+
+  // Q12 — impact score shapes the tone of the purpose ending
+  const impactScore = getImpactScore();
+  let impactEnding = '';
+  if (impactScore >= 5) impactEnding = ', creating lasting change for the communities I care about';
+  else if (impactScore >= 3) impactEnding = ', making a meaningful difference where I can';
+
+  const suggestion = love
+    ? `I exist to use my love for ${love} and my strength in ${skillPhrase} to address ${world} through ${careerPhrase}${impactEnding}.`
+    : `I exist to apply my unique strengths to create meaningful change in the world${impactEnding}.`;
+  const saved = getAnswer('reflection.purpose') || '';
+
+  document.getElementById('gameArea').innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(255,255,255,0.08);font-size:1.6rem">🌸</div>
+        <div>
+          <div class="card-title" style="background:linear-gradient(135deg,#FF6B9D,#00C9A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+            Your Purpose Statement
+          </div>
+          <div class="card-subtitle">The centre of your Purpose — in your own words, ${escHtml(name)}.</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem">
+        A purpose statement captures <em>who you serve</em>, <em>what you do</em>, and <em>why it matters</em>. It doesn't have to be perfect — it should feel true to <em>you right now</em>.
+      </p>
+
+      <div style="padding:1rem;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:1rem;font-size:0.82rem;color:var(--muted)">
+        <strong style="color:var(--text)">✦ Formula to try:</strong><br>
+        <em>"I exist to [action] + [who/what] + [outcome/impact]"</em><br><br>
+        <strong style="color:var(--text)">✦ Based on your answers, here's a starting point:</strong><br>
+        <span style="color:rgba(255,255,255,0.7);font-style:italic">${escHtml(suggestion)}</span>
+      </div>
+
+      <div class="purpose-box">
+        <div class="purpose-label">My Purpose Statement</div>
+        <input class="purpose-input" type="text"
+          placeholder="Write your purpose here — make it yours..."
+          value="${escAttr(saved)}"
+          oninput="setAnswer('reflection.purpose',this.value)"
+        />
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:0.6rem">
+          Start with "I exist to..." or "My purpose is to..." — and keep it personal
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:1.5rem">
+        <button class="btn btn-ghost" onclick="goBack()">← Back</button>
+        <button class="btn btn-primary" onclick="completePurpose()">Complete My Purpose ✦</button>
+      </div>
+    </div>`;
+}
+
+function completePurpose() {
+  const p = getAnswer('reflection.purpose') || '';
+  if (p.trim().length < 5) { showValidation('Please write your purpose statement before completing!'); return; }
+  state.screen = 'done';
+  render();
+}
+
+// =================== CELEBRATION ===================
+function renderCelebration() {
+  const name    = state.studentName;
+  const purpose = getAnswer('reflection.purpose') || '';
+  const love    = (getAnswer('love.activities')  || []).slice(0,3);
+  const good    = (getAnswer('good.skills')      || []).slice(0,3);
+  const world   = (getAnswer('world.issues')     || []).slice(0,3);
+  const paid    = (getAnswer('paid.careers')     || []).slice(0,3);
+  const passion = getAnswer('reflection.passion')    || '';
+  const mission = getAnswer('reflection.mission')    || '';
+  const vocat   = getAnswer('reflection.vocation')   || '';
+  const profn   = getAnswer('reflection.profession') || '';
+
+  const overlapCards = [
+    passion ? { color: 'var(--love)',  bc: 'rgba(255,107,157,0.2)', bg: 'rgba(255,107,157,0.08)', label: '💜 PASSION',    text: passion } : null,
+    mission ? { color: 'var(--world)', bc: 'rgba(0,201,167,0.2)',   bg: 'rgba(0,201,167,0.08)',   label: '🌟 MISSION',    text: mission } : null,
+    vocat   ? { color: 'var(--good)',  bc: 'rgba(124,92,191,0.2)',  bg: 'rgba(124,92,191,0.08)',  label: '🔧 VOCATION',   text: vocat   } : null,
+    profn   ? { color: 'var(--paid)',  bc: 'rgba(255,179,71,0.2)',  bg: 'rgba(255,179,71,0.08)',  label: '💼 PROFESSION', text: profn   } : null
+  ].filter(Boolean);
+
+  document.getElementById('gameArea').innerHTML = `
+    <div id="printArea">
+      <div class="celebration">
+        <span class="emoji">🌸</span>
+        <h2>Congratulations, ${escHtml(name)}! You've Discovered Your Purpose!</h2>
+        <p>This is just the beginning of your journey. Your purpose is a compass — not a destination. It will evolve as you grow.</p>
+      </div>
+
+      <div class="final-purpose">
+        <div class="fp-label">✦ ${escHtml(name.toUpperCase())}'S PURPOSE STATEMENT</div>
+        <div class="fp-statement">${escHtml(purpose)}</div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;margin-bottom:1.2rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">
+          ${escHtml(name)}'s Purpose at a Glance
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:${overlapCards.length ? '1.2rem' : '0'}">
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--love);margin-bottom:0.4rem">❤️ What I Love</div>
+            <div class="chips">${love.map(t=>`<div class="chip" style="background:rgba(255,107,157,0.15);color:var(--love)">${escHtml(t)}</div>`).join('')}</div>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--good);margin-bottom:0.4rem">⚡ My Strengths</div>
+            <div class="chips">${good.map(t=>`<div class="chip" style="background:rgba(124,92,191,0.15);color:var(--good)">${escHtml(t)}</div>`).join('')}</div>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--world);margin-bottom:0.4rem">🌍 World Impact</div>
+            <div class="chips">${world.map(t=>`<div class="chip" style="background:rgba(0,201,167,0.15);color:var(--world)">${escHtml(t)}</div>`).join('')}</div>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--paid);margin-bottom:0.4rem">💼 Career Direction</div>
+            <div class="chips">${paid.map(t=>`<div class="chip" style="background:rgba(255,179,71,0.15);color:var(--paid)">${escHtml(t)}</div>`).join('')}</div>
+          </div>
+        </div>
+
+        ${overlapCards.length ? `
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:1rem 0"></div>
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem">The Four Overlaps</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem">
+          ${overlapCards.map(c => `<div style="padding:0.7rem;background:${c.bg};border-radius:10px;border:1px solid ${c.bc}">
+            <div style="color:${c.color};font-weight:700;font-size:0.7rem;margin-bottom:0.3rem">${c.label}</div>
+            <div style="font-size:0.83rem;line-height:1.4">${escHtml(c.text)}</div>
+          </div>`).join('')}
+        </div>` : ''}
+      </div>
+
+      <div class="next-steps">
+        <h3>✦ What Now, ${escHtml(name)}? — Next Steps</h3>
+        <div class="next-step-item"><div class="step-num">1</div><div><strong>Share it.</strong> Tell a trusted friend, family member, or your tutor about your purpose. Saying it out loud makes it real.</div></div>
+        <div class="next-step-item"><div class="step-num">2</div><div><strong>Explore it.</strong> Look for CCAs, internships, or projects that align with your purpose. Small experiments help refine it.</div></div>
+        <div class="next-step-item"><div class="step-num">3</div><div><strong>Revisit it.</strong> Your purpose should evolve as you learn and grow. Come back to this in 6 months and see what's changed.</div></div>
+        <div class="next-step-item"><div class="step-num">4</div><div><strong>Take action.</strong> Purpose without action is just a dream. What's one small step you can take this week?</div></div>
+      </div>
+    </div>
+
+    <div class="bottom-actions">
+      <button class="btn-pdf" onclick="savePDF()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        Download My Purpose
+      </button>
+      <button class="edit-btn" onclick="goBack()">← Edit My Answers</button>
+      <button class="restart-btn" onclick="restartGame()">↺ Start Over</button>
+    </div>
+    <div id="pdf-tip" style="display:none;margin-top:1rem;text-align:center;font-size:0.8rem;color:var(--muted);background:rgba(0,201,167,0.08);border:1px solid rgba(0,201,167,0.25);border-radius:12px;padding:0.8rem 1.2rem;animation:slideUp 0.3s ease">
+      ✅ Downloaded! Open the file in your browser, then press <strong>Ctrl+P</strong> (Windows) or <strong>⌘+P</strong> (Mac) → <strong>Save as PDF</strong> to get your PDF.
+    </div>`;
+
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressPct').textContent  = '100%';
+  document.getElementById('progressText').textContent = '🎉 Purpose discovered!';
+}
+
+function savePDF() {
+  const name = state.studentName || 'Student';
+
+  // Collect all data for the print view
+  const purpose  = getAnswer('reflection.purpose') || '';
+  const love     = (getAnswer('love.activities')   || []).slice(0,4);
+  const loveT    = (getAnswer('love.topics')        || []).slice(0,2);
+  const good     = (getAnswer('good.skills')        || []).slice(0,3);
+  const goodE    = (getAnswer('good.effort')        || []).slice(0,2);
+  const strengths = getStrengthNames().slice(0,3);
+  const world    = (getAnswer('world.issues')       || []).slice(0,3);
+  const worldC   = (getAnswer('world.community')    || []).slice(0,2);
+  const paid     = (getAnswer('paid.careers')       || []).slice(0,3);
+  const paidS    = (getAnswer('paid.marketableSkills') || []).slice(0,2);
+  const passion  = getAnswer('reflection.passion')    || '';
+  const mission  = getAnswer('reflection.mission')    || '';
+  const vocation = getAnswer('reflection.vocation')   || '';
+  const profn    = getAnswer('reflection.profession') || '';
+  const impactScore  = getImpactScore();
+  const moneyMindset = getMoneyMindset();
+
+  // Helper to render chip HTML for print
+  function chips(items, color, bg) {
+    return items.map(t =>
+      `<span style="display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:500;background:${bg};color:${color};border:1px solid ${color}44;margin:2px">${t}</span>`
+    ).join('');
+  }
+
+  const overlapRows = [
+    passion  ? { color:'#c94a7a', bg:'rgba(255,107,157,0.08)', border:'rgba(255,107,157,0.3)', label:'💜 PASSION',    text: passion  } : null,
+    mission  ? { color:'#00957a', bg:'rgba(0,201,167,0.08)',   border:'rgba(0,201,167,0.3)',   label:'🌟 MISSION',    text: mission  } : null,
+    vocation ? { color:'#5a3d9a', bg:'rgba(124,92,191,0.08)',  border:'rgba(124,92,191,0.3)',  label:'🔧 VOCATION',   text: vocation } : null,
+    profn    ? { color:'#b07800', bg:'rgba(255,179,71,0.1)',   border:'rgba(255,179,71,0.35)', label:'💼 PROFESSION',  text: profn    } : null,
+  ].filter(Boolean);
+
+  const printHTML = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${name} – My Purpose Statement</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ffffff;
+    color: #111111;
+    padding: 32px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  h1, h2, h3, .syne { font-family: 'Syne', sans-serif; }
+
+  /* HEADER */
+  .pdf-header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0ea;
+  }
+  .pdf-badge {
+    display: inline-block;
+    background: rgba(255,107,157,0.12);
+    border: 1px solid rgba(255,107,157,0.4);
+    color: #c94a7a;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 99px;
+    margin-bottom: 10px;
+  }
+  .pdf-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #FF6B9D, #7C5CBF, #00C9A7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+  .pdf-subtitle { color: #666; font-size: 13px; }
+
+  /* PURPOSE BOX */
+  .purpose-banner {
+    background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(0,201,167,0.1));
+    border: 2px solid rgba(255,107,157,0.35);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .purpose-banner .plabel {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .purpose-banner .ptext {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.6;
+  }
+
+  /* SECTION */
+  .section {
+    background: #f7f7fc;
+    border: 1px solid #e0e0ee;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .four-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .grid-cell { }
+  .cell-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+
+  /* OVERLAP CARDS */
+  .overlap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .overlap-cell {
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #111111;
+  }
+  .overlap-cell .olabel {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  /* NEXT STEPS */
+  .step-row {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e8ee;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #111111;
+  }
+  .step-row:last-child { border-bottom: none; }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(255,107,157,0.15); color: #c94a7a;
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-family: 'Syne', sans-serif; margin-top: 1px;
+  }
+
+  /* INSIGHT ROW */
+  .insight-row {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 8px 0; border-bottom: 1px solid #e8e8ee;
+    font-size: 12px; align-items: center;
+    color: #111111;
+  }
+  .insight-row:last-child { border-bottom: none; }
+  .insight-key { color: #888; min-width: 110px; font-size: 11px; }
+
+  /* FOOTER */
+  .pdf-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e8e8ee;
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  /* PRINT TIP - hidden when actually printing */
+  .print-tip {
+    background: #fffbe6;
+    border: 1px solid #f0c040;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #7a6000;
+    text-align: center;
+  }
+  @media print {
+    .print-tip { display: none !important; }
+    body { padding: 16px; background: #ffffff !important; color: #111111 !important; }
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<div class="print-tip">
+  📄 To save as PDF: Press <strong>Ctrl+P</strong> (Windows) or <strong>⌘+P</strong> (Mac) → set Destination to <strong>Save as PDF</strong> → Save
+</div>
+
+<div class="pdf-header">
+  <div class="pdf-badge">✦ Designing Your Life</div>
+  <div class="pdf-title">Purpose Discovery</div>
+  <div class="pdf-subtitle">${name}'s Personal Purpose Map</div>
+</div>
+
+<!-- PURPOSE STATEMENT -->
+<div class="purpose-banner">
+  <div class="plabel">✦ ${name.toUpperCase()}'S PURPOSE STATEMENT</div>
+  <div class="ptext">${purpose}</div>
+</div>
+
+<!-- FOUR PILLARS -->
+<div class="section">
+  <div class="section-title">The Four Pillars</div>
+  <div class="four-grid">
+    <div class="grid-cell">
+      <div class="cell-label" style="color:#FF6B9D">❤️ What I Love</div>
+      <div>${chips([...love,...loveT], '#FF6B9D', 'rgba(255,107,157,0.12)')}</div>
+    </div>
+    <div class="grid-cell">
+      <div class="cell-label" style="color:#7C5CBF">⚡ What I'm Good At</div>
+      <div>${chips([...good,...goodE,...strengths], '#7C5CBF', 'rgba(124,92,191,0.12)')}</div>
+    </div>
+    <div class="grid-cell">
+      <div class="cell-label" style="color:#00C9A7">🌍 What The World Needs</div>
+      <div>${chips([...world,...worldC], '#00C9A7', 'rgba(0,201,167,0.12)')}</div>
+    </div>
+    <div class="grid-cell">
+      <div class="cell-label" style="color:#FFB347">💼 What I Can Be Paid For</div>
+      <div>${chips([...paid,...paidS], '#FFB347', 'rgba(255,179,71,0.12)')}</div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAP ZONES -->
+${overlapRows.length ? `
+<div class="section">
+  <div class="section-title">The Four Overlapping Zones</div>
+  <div class="overlap-grid">
+    ${overlapRows.map(o => `
+      <div class="overlap-cell" style="background:${o.bg};border:1.5px solid ${o.border}">
+        <div class="olabel" style="color:${o.color}">${o.label}</div>
+        <div style="color:#111111">${o.text}</div>
+      </div>`).join('')}
+  </div>
+</div>` : ''}
+
+<!-- INSIGHTS -->
+${(impactScore || moneyMindset) ? `
+<div class="section">
+  <div class="section-title">Personal Insights</div>
+  <div>
+    ${impactScore ? `<div class="insight-row">
+      <span class="insight-key">Impact importance</span>
+      <div style="flex:1">
+        <div style="display:flex;gap:4px;align-items:center">
+          ${[1,2,3,4,5,6].map(n => `<div style="width:22px;height:8px;border-radius:4px;background:${n<=impactScore ? '#00C9A7' : 'rgba(255,255,255,0.1)'}"></div>`).join('')}
+          <span style="color:#555;font-size:11px;margin-left:4px">${impactScore}/6 — ${impactScore>=5?'Very important':impactScore>=3?'Moderately important':'Less of a priority'}</span>
+        </div>
+      </div>
+    </div>` : ''}
+    ${moneyMindset ? `<div class="insight-row">
+      <span class="insight-key">Work & money mindset</span>
+      <span style="color:#b07d20;font-weight:500">${moneyMindset}</span>
+    </div>` : ''}
+  </div>
+</div>` : ''}
+
+<!-- NEXT STEPS -->
+<div class="section">
+  <div class="section-title">✦ What Now, ${name}? — Next Steps</div>
+  <div class="steps">
+    <div class="step-row"><div class="step-num">1</div><div><strong>Share it.</strong> Tell a trusted friend, family member, or your tutor. Saying it out loud makes it real.</div></div>
+    <div class="step-row"><div class="step-num">2</div><div><strong>Explore it.</strong> Look for CCAs, internships, or projects that align with your purpose.</div></div>
+    <div class="step-row"><div class="step-num">3</div><div><strong>Revisit it.</strong> Your purpose will evolve. Come back in 6 months and see what's changed.</div></div>
+    <div class="step-row"><div class="step-num">4</div><div><strong>Take action.</strong> What's one small step you can take this week?</div></div>
+  </div>
+</div>
+
+<div class="pdf-footer">Generated with Designing Your Life · Purpose Discovery · ${new Date().toLocaleDateString('en-SG', {day:'numeric',month:'long',year:'numeric'})}</div>
+
+<script>
+  // Open your browser's Print dialog (Ctrl+P / Cmd+P) and choose "Save as PDF"
+  // for best results. The page is already styled for print.
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+      // Let the default print dialog open naturally
+    }
+  });
+<\/script>
+</body>
+</html>`;
+
+  // Download as a self-contained HTML file via blob URL
+  // (works inside sandboxes where window.open and window.print are blocked)
+  try {
+    const blob = new Blob([printHTML], { type: 'text/html;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    const safeName = name.replace(/[^a-z0-9 _-]/gi, '_');
+    a.href     = url;
+    a.download = `${safeName}-My-Purpose.html`;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    // Show a friendly tip after download
+    setTimeout(() => {
+      const tip = document.getElementById('pdf-tip');
+      if (tip) {
+        tip.style.display = 'block';
+        setTimeout(() => { tip.style.display = 'none'; }, 8000);
+      }
+    }, 500);
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  } catch(e) {
+    alert('Download failed. Please try again.');
+  }
+}
+
+// =================== HELPERS ===================
+function setAnswer(key, val) {
+  const [section, field] = key.split('.');
+  if (!state.answers[section]) state.answers[section] = {};
+  state.answers[section][field] = val;
+}
+
+function getAnswer(key) {
+  const [section, field] = key.split('.');
+  return state.answers[section]?.[field];
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function escAttr(str) {
+  return String(str || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function restartGame() {
+  state.screen = 'welcome'; state.phase = 0; state.step = 0;
+  state.studentName = '';
+  state.answers = { love:{}, good:{}, world:{}, paid:{}, reflection:{} };
+  window._tags = [];
+  render();
+}
+
+// =================== INIT ===================
+render();
+</script>
+</body>
+</html>
